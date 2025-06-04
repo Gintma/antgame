@@ -11,9 +11,6 @@ import antSvg from '../assets/ant.svg';
 const CELL_SIZE = 20;
 const ANIMATION_SPEED = 32; // 增加到32ms，约等于30fps
 const ANT_SIZE = 16;
-const ANT_ANIMATION_FRAMES = 12;
-const ANIMATION_SPEED_FACTOR = 0.1;
-const MOVE_TRANSITION_DURATION = 400;
 
 const ANT_COLORS = {
   explorer: '#FF0000',    // 纯红色

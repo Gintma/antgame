@@ -105,7 +105,7 @@ export function generateMaze(config: MazeConfig): Maze {
   for (let y = 1; y < finalHeight - 1; y += 2) {
     for (let x = 1; x < finalWidth - 1; x += 2) {
       if (Math.random() < params.deadEndFactor) {
-         const neighbors = getNeighbors({ x, y }, cells, finalWidth, finalHeight);
+         const neighbors = getNeighbors({ x, y }, finalWidth, finalHeight);
          const wallNeighbors = neighbors.filter(pos => cells[pos.y][pos.x].isWall);
          if(wallNeighbors.length > 0) {
             const wallToKeep = wallNeighbors[Math.floor(Math.random() * wallNeighbors.length)];
@@ -151,7 +151,7 @@ function getUnvisitedNeighbors(pos: Position, cells: Cell[][], width: number, he
   return neighbors;
 }
 
-function getNeighbors(pos: Position, cells: Cell[][], width: number, height: number): Position[] {
+function getNeighbors(pos: Position, width: number, height: number): Position[] {
     const neighbors: Position[] = [];
     const directions = [
       { x: 0, y: -1 }, // 上
