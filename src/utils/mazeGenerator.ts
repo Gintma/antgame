@@ -43,8 +43,6 @@ export function generateMaze(config: MazeConfig): Maze {
   const params = difficultyParams[difficulty];
   
   // 根据难度调整迷宫尺寸
-  const baseWidth = 31; // 基础宽度
-  const baseHeight = 31; // 基础高度
   const mazeWidth = Math.floor((width % 2 === 0 ? width - 1 : width) * params.mazeScale);
   const mazeHeight = Math.floor((height % 2 === 0 ? height - 1 : height) * params.mazeScale);
 
@@ -177,24 +175,6 @@ function getNeighbors(pos: Position, cells: Cell[][], width: number, height: num
     return neighbors;
   }
 
-function countExits(pos: Position, cells: Cell[][]): number {
-  const directions = [
-    { x: 0, y: -1 }, // 上
-    { x: 1, y: 0 },  // 右
-    { x: 0, y: 1 },  // 下
-    { x: -1, y: 0 }  // 左
-  ];
-
-  return directions.reduce((count, dir) => {
-    const newX = pos.x + dir.x;
-    const newY = pos.y + dir.y;
-    if (
-      newX >= 0 && newX < cells[0].length &&
-      newY >= 0 && newY < cells.length &&
-      !cells[newY][newX].isWall
-    ) {
-      return count + 1;
-    }
-    return count;
-  }, 0);
-} 
+// function countExits(pos: Position, cells: Cell[][]): number {
+//   ...
+// } 

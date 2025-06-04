@@ -1,4 +1,4 @@
-import type { Position, Cell, Maze } from '../types/maze';
+import type { Maze, Position } from '../types/maze';
 import type { Ant, AntGroup } from '../types/ant';
 
 interface AntState {

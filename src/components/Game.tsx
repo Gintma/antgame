@@ -44,7 +44,6 @@ export const Game: React.FC = () => {
   const [difficulty, setDifficulty] = useState<Difficulty>('normal');
   const antImageRef = useRef<HTMLImageElement | null>(null);
   const antStatesRef = useRef<AntState[]>([]);
-  const animationFrameRef = useRef<number>(0);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   // 初始化游戏
@@ -87,49 +86,6 @@ export const Game: React.FC = () => {
       moveStartTime: Date.now()
     }));
   }, [maze, selectedAnts]);
-
-  // 更新蚂蚁状态
-  const updateAntStates = (ants: { position: { x: number; y: number } }[]) => {
-    const now = Date.now();
-    ants.forEach((ant, index) => {
-      const state = antStatesRef.current[index];
-      if (state) {
-        // 检查是否需要开始新的移动
-        if (ant.position.x !== state.targetPosition.x || ant.position.y !== state.targetPosition.y) {
-          state.position = { ...state.targetPosition };
-          state.targetPosition = { ...ant.position };
-          state.moveStartTime = now;
-        }
-
-        // 计算移动方向
-        const dx = state.targetPosition.x - state.position.x;
-        const dy = state.targetPosition.y - state.position.y;
-        if (dx !== 0 || dy !== 0) {
-          state.direction = { x: dx, y: dy };
-        }
-
-        // 平滑更新动画帧
-        const timeDiff = now - state.lastUpdate;
-        state.animationFrame = (state.animationFrame + timeDiff * ANIMATION_SPEED_FACTOR) % ANT_ANIMATION_FRAMES;
-        state.lastUpdate = now;
-      }
-    });
-  };
-
-  // 计算当前位置
-  const getCurrentPosition = (state: AntState) => {
-    const now = Date.now();
-    const progress = Math.min(1, (now - state.moveStartTime) / MOVE_TRANSITION_DURATION);
-    // 使用更平缓的缓动函数
-    const easeProgress = progress < 0.5
-      ? 8 * progress * progress * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 4) / 2;
-
-    return {
-      x: state.position.x + (state.targetPosition.x - state.position.x) * easeProgress,
-      y: state.position.y + (state.targetPosition.y - state.position.y) * easeProgress
-    };
-  };
 
   // 游戏循环
   useEffect(() => {
