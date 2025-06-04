@@ -1,0 +1,195 @@
+.ant-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px; /* 调整内边距 */
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 调整阴影 */
+  width: 100%; /* 让它填充父容器的宽度 */
+  box-sizing: border-box; /* 确保 padding 不会增加总宽度 */
+  /* 高度由内容决定 */
+}
+
+.ant-selector h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.ant-selector h3 {
+  margin-top: 0;
+  margin-bottom: 15px; /* 调整标题下边距 */
+  color: #333;
+  font-size: 18px; /* 调整字体大小 */
+  text-align: center; /* 文本居中 */
+}
+
+.ant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ant-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.ant-item:hover {
+  background-color: #f0f0f0;
+}
+
+.ant-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.ant-info {
+  flex: 1;
+}
+
+.ant-type {
+  font-weight: bold;
+  color: #333;
+}
+
+.ant-stats {
+  font-size: 12px;
+  color: #666;
+}
+
+.remove-button {
+  padding: 4px 8px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
+}
+
+.add-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.add-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.ant-count {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.ant-type-buttons {
+  display: flex;
+  flex-wrap: wrap; /* 允许换行以形成两列 */
+  justify-content: center; /* 按钮居中 */
+  gap: 10px; /* 按钮之间的间隔 */
+  width: 100%; /* 占据父容器全部宽度 */
+  margin-bottom: 15px; /* 在按钮和已选列表之间留出空间 */
+}
+
+.ant-type-buttons button {
+  /* 移除固定宽度，让宽度根据内容自适应 */
+  /* width: calc(50% - 5px); */
+  height: 38px; /* 调整按钮高度 */
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px; /* 恢复字体大小 */
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+  display: flex; /* 按钮内部使用flex */
+  justify-content: center; /* 文本水平居中 */
+  align-items: center; /* 文本垂直居中 */
+  text-align: center; /* 确保文本居中 */
+  padding: 0 10px; /* 增加水平内边距 */
+  white-space: nowrap; /* 防止文本换行 */
+  /* overflow: hidden; */ /* 暂时移除溢出隐藏，以便调试 */
+  /* text-overflow: ellipsis; */ /* 暂时移除省略号 */
+}
+
+.ant-type-buttons button:disabled {
+  opacity: 0.6; /* 调整禁用时的透明度 */
+  cursor: not-allowed;
+  background-color: #ccc !important; /* 禁用时使用灰色背景，覆盖行内样式 */
+}
+
+.ant-type-buttons button:hover:not(:disabled) {
+  opacity: 0.9; /* 调整悬停时的透明度 */
+}
+
+/* 如果需要更精细的颜色控制，可以在这里为每种蚂蚁类型定义单独的按钮样式 */
+/* 例如： */
+/* .ant-type-buttons button[style*="#FF0000"] { ... } */
+
+.selected-ants-list {
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 6px; /* 调整已选蚂蚁之间的间隔 */
+  width: 100%; /* 占据父容器全部宽度 */
+  justify-content: center; /* 已选蚂蚁居中 */
+  padding-top: 12px; /* 在列表顶部添加更多空间 */
+  border-top: 1px solid #eee; /* 添加顶部边框作为分隔 */
+}
+
+.selected-ant-item {
+  display: flex;
+  align-items: center;
+  background-color: #e9e9e9; /* 调整浅灰色背景 */
+  border-radius: 15px; /* 增加圆角 */
+  padding: 5px 10px; /* 调整内边距 */
+  font-size: 13px; /* 调整字体大小 */
+  gap: 5px; /* 内部元素间隔 */
+}
+
+.selected-ant-item .delete-button {
+  background: none;
+  border: none;
+  color: #666; /* 调整删除按钮颜色 */
+  cursor: pointer;
+  font-size: 15px; /* 调整删除按钮大小 */
+  padding: 0;
+  margin-left: 5px; /* 与文本间隔 */
+  line-height: 1; /* 调整行高，使其居中 */
+}
+
+.selected-ant-item .delete-button:hover {
+  color: #ff0000; /* 悬停颜色改为红色 */
+}
+
+/* 移除之前已选蚂蚁列表的样式 */
+/* .selected-ants { ... } */
+/* .selected-ant { ... } */
+/* .ant-tooltip { ... } */
+/* .ant-tooltip-header { ... } */
+/* .ant-tooltip-content { ... } */ 
